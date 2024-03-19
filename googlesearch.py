@@ -5,6 +5,15 @@ import random
 import sys
 import time
 import math
+import ssl
+
+# Verifica se é possível criar um contexto SSL padrão (para corrigir erros de certificado SSL).
+try:
+    _create_unverified_https_context = ssl._create_unverified_context
+except AttributeError:
+    pass
+else:
+    ssl._create_default_https_context = _create_unverified_https_context
 
 if sys.version_info[0] > 2:
     from http.cookiejar import LWPCookieJar
